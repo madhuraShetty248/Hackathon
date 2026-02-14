@@ -1,0 +1,147 @@
+{
+  "nav": {
+    "logo": "CareOps",
+    "product": "Product",
+    "features": "Features",
+    "login": "Log in",
+    "getStarted": "Get started",
+    "getInTouch": "Get in Touch"
+  },
+  "hero": {
+    "title": "CareOps",
+    "tagline": "A platform working with teams across operations and service businesses.",
+    "subline": "We help founders and teams run leads, bookings, forms, and inventory in one place.",
+    "cta": "Get in Touch",
+    "scroll": "Scroll"
+  },
+  "about": {
+    "label": "What We're About",
+    "title": "Shaped by the real journeys teams face",
+    "body": "CareOps is built around the real challenges of running a service business. We focus on a simple, unified operations platform—getting involved where clarity and support matter most. We work with teams across different domains, stepping in at various stages to help shape, run, and scale operations. Our focus remains the same: long-term clarity and meaningful outcomes in a fast-moving world."
+  },
+  "whatWeDo": {
+    "label": "What We Do",
+    "title": "Building operations that matter",
+    "ventureBuilding": {
+      "title": "Venture Building",
+      "desc": "From concept to launch, we co-create workflows with founders, providing structure and hands-on support."
+    },
+    "strategicInvestment": {
+      "title": "Unified Inbox",
+      "desc": "Email and messages in one place. Never miss a lead or customer message again."
+    },
+    "growthPartnership": {
+      "title": "Growth Partnership",
+      "desc": "For established teams, we offer booking tools, forms, and inventory so you scale without chaos."
+    }
+  },
+  "portfolio": {
+    "label": "Our Platform",
+    "title": "Features across your workflow",
+    "subline": "One place for leads, bookings, forms, and inventory.",
+    "viewFull": "View product",
+    "ai": "Bookings",
+    "fintech": "Inbox",
+    "healthtech": "Forms",
+    "saas": "Inventory"
+  },
+  "approach": {
+    "label": "Our Approach",
+    "title": "Principles that guide our product",
+    "01": {
+      "title": "Long-Term Thinking",
+      "desc": "We prioritize sustainable workflows over quick fixes, building lasting value alongside our users."
+    },
+    "02": {
+      "title": "Founder-First",
+      "desc": "Every feature starts with understanding the team's vision and supporting their journey."
+    },
+    "03": {
+      "title": "Active Collaboration",
+      "desc": "We roll up our sleeves and work directly with how you operate, not just provide software."
+    },
+    "04": {
+      "title": "Global Perspective",
+      "desc": "Our product works for teams everywhere—any industry, any size."
+    },
+    "explore": "Explore"
+  },
+  "footer": {
+    "tagline": "Venture studio building transformative companies at the intersection of technology and human potential.",
+    "company": "COMPANY",
+    "about": "About",
+    "team": "Team",
+    "partners": "Partners",
+    "contact": "Contact",
+    "connect": "CONNECT",
+    "linkedin": "LinkedIn",
+    "x": "X",
+    "contactLabel": "CONTACT",
+    "location": "San Francisco Bay Area",
+    "locationLine2": "California, USA",
+    "email": "contact@careops.com",
+    "phone": "+1 (415) 967-9406",
+    "copyright": "©2026 CareOps. All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
+  },
+  "cta": {
+    "powerUp": "Power up your operations",
+    "startFree": "Start for free",
+    "login": "Log in"
+  },
+  "common": {
+    "loading": "Loading..."
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "What's happening in your business right now",
+    "alerts": "Alerts",
+    "unansweredMessages": "unanswered message(s)",
+    "unconfirmedBookings": "unconfirmed booking(s)",
+    "overdueForms": "overdue form(s)",
+    "lowStock": "low stock item(s)",
+    "bookings": "Bookings",
+    "conversations": "Conversations",
+    "forms": "Forms",
+    "inventory": "Inventory",
+    "completed": "Completed",
+    "noShow": "No-show",
+    "upcoming": "Upcoming",
+    "unanswered": "Unanswered messages",
+    "pending": "Pending",
+    "overdue": "overdue",
+    "lowStockItems": "Low stock items",
+    "upcomingBookings": "Upcoming Bookings",
+    "contact": "Contact",
+    "dateTime": "Date & Time",
+    "status": "Status",
+    "noUpcoming": "No upcoming bookings",
+    "bookingsNext7": "Bookings (next 7 days)",
+    "formsNext7": "Forms completed (next 7 days)",
+    "completeSetup": "Complete setup",
+    "goLive": "to go live",
+    "quickActions": "Quick Actions",
+    "viewInbox": "View Inbox",
+    "addBooking": "Add Booking",
+    "createForm": "Create Form",
+    "checkInventory": "Check Inventory",
+    "activity": "Recent Activity",
+    "tip": "Did you know?",
+    "tipText": "Quick replies in Inbox can save 40% of your response time. Try our templates!",
+    "welcome": "Welcome back",
+    "activityNewBooking": "New booking from {name}",
+    "activityFormSubmitted": "Form submitted for {form}",
+    "activityMsgReceived": "New message in Inbox"
+  },
+  "layout": {
+    "dashboard": "Dashboard",
+    "setup": "Setup",
+    "inbox": "Inbox",
+    "bookings": "Bookings",
+    "forms": "Forms",
+    "inventory": "Inventory",
+    "staff": "Staff",
+    "logout": "Logout"
+  }
+}
