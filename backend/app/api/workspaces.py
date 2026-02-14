@@ -17,6 +17,18 @@ def _get_workspace_access(workspace_id: int, user: User, db: Session) -> Workspa
         raise HTTPException(status_code=403, detail="Access denied")
     return m
 
+
+def require_owner(
+    workspace_id: int,
+    user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+) -> User:
+    """Dependency: requires user to be owner. Staff cannot access system config, integrations, automation."""
+    m = _get_workspace_access(workspace_id, user, db)
+    if m.role != "owner":
+        raise HTTPException(status_code=403, detail="Owner access required")
+    return user
+
 @router.get("")
 def list_workspaces(user: User = Depends(get_current_user), db: Session = Depends(get_db)):
     members = db.query(WorkspaceMember).filter(WorkspaceMember.user_id == user.id).all()
@@ -80,7 +92,7 @@ def get_workspace(workspace_id: int, user: User = Depends(get_current_user), db:
     }
 
 @router.patch("/{workspace_id}")
-def update_workspace(workspace_id: int, data: WorkspaceUpdate, user: User = Depends(get_current_user), db: Session = Depends(get_db)):
+def update_workspace(workspace_id: int, data: WorkspaceUpdate, user: User = Depends(require_owner), db: Session = Depends(get_db)):
     _get_workspace_access(workspace_id, user, db)
     ws = db.query(Workspace).filter(Workspace.id == workspace_id).first()
     if not ws:
@@ -91,7 +103,7 @@ def update_workspace(workspace_id: int, data: WorkspaceUpdate, user: User = Depe
     return {"id": ws.id}
 
 @router.post("/{workspace_id}/integrations")
-def save_integrations(workspace_id: int, data: IntegrationConfig, user: User = Depends(get_current_user), db: Session = Depends(get_db)):
+def save_integrations(workspace_id: int, data: IntegrationConfig, user: User = Depends(require_owner), db: Session = Depends(get_db)):
     _get_workspace_access(workspace_id, user, db)
     ws = db.query(Workspace).filter(Workspace.id == workspace_id).first()
     if not ws:
@@ -129,7 +141,7 @@ def save_integrations(workspace_id: int, data: IntegrationConfig, user: User = D
     }
 
 @router.post("/{workspace_id}/activate")
-def activate_workspace(workspace_id: int, user: User = Depends(get_current_user), db: Session = Depends(get_db)):
+def activate_workspace(workspace_id: int, user: User = Depends(require_owner), db: Session = Depends(get_db)):
     _get_workspace_access(workspace_id, user, db)
     ws = db.query(Workspace).filter(Workspace.id == workspace_id).first()
     if not ws:

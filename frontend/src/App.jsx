@@ -1,6 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { useAuth } from './context/AuthContext'
-import { WorkspaceProvider } from './context/WorkspaceContext'
+import { useWorkspace, WorkspaceProvider } from './context/WorkspaceContext'
 import Layout from './components/Layout'
 import Login from './pages/Login'
 import Register from './pages/Register'
@@ -23,6 +23,16 @@ function ProtectedRoute({ children }) {
   return children
 }
 
+/** Owner-only routes: Setup, Staff. Staff users are redirected to dashboard. */
+function OwnerRoute({ children }) {
+  const { user } = useAuth()
+  const { workspace, loading } = useWorkspace()
+  const role = workspace?.role ?? user?.role
+  if (loading) return <div className="loading">Loading...</div>
+  if (role && role !== 'owner') return <Navigate to="/app" replace />
+  return children
+}
+
 export default function App() {
   return (
     <Routes>
@@ -40,12 +50,12 @@ export default function App() {
         </ProtectedRoute>
       }>
         <Route index element={<Dashboard />} />
-        <Route path="onboarding" element={<Onboarding />} />
+        <Route path="onboarding" element={<OwnerRoute><Onboarding /></OwnerRoute>} />
         <Route path="inbox" element={<Inbox />} />
         <Route path="bookings" element={<Bookings />} />
         <Route path="forms" element={<Forms />} />
         <Route path="inventory" element={<Inventory />} />
-        <Route path="staff" element={<Staff />} />
+        <Route path="staff" element={<OwnerRoute><Staff /></OwnerRoute>} />
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

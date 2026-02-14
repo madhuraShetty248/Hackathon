@@ -29,6 +29,7 @@ export default function Login() {
         <Link to="/" style={{ display: 'block', marginBottom: '1rem', fontSize: '0.875rem', color: 'var(--text-muted)' }}>← Back to home</Link>
         <h1>CareOps</h1>
         <p className="auth-subtitle">Sign in to your account</p>
+        <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginBottom: '1rem' }}>Owners and staff use the same login. Staff: use the credentials from your workspace owner.</p>
         <form onSubmit={handleSubmit}>
           {error && <div className="auth-error">{error}</div>}
           <input type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} required autoComplete="email" />

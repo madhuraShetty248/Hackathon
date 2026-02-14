@@ -7,7 +7,7 @@ from app.models.contact import Contact
 from app.models.booking import Booking, BookingType
 from app.models.workspace import Workspace
 from app.schemas import BookingTypeCreate, BookingCreate
-from app.api.workspaces import _get_workspace_access
+from app.api.workspaces import _get_workspace_access, require_owner
 from app.auth import get_current_user
 from app.services.automation import on_booking_created
 
@@ -20,7 +20,7 @@ def list_booking_types(workspace_id: int, user: User = Depends(get_current_user)
     return [{"id": t.id, "name": t.name, "duration_minutes": t.duration_minutes, "availability": t.availability, "location": t.location, "form_ids": t.form_ids or []} for t in types]
 
 @router.post("/{workspace_id}/booking-types")
-def create_booking_type(workspace_id: int, data: BookingTypeCreate, user: User = Depends(get_current_user), db: Session = Depends(get_db)):
+def create_booking_type(workspace_id: int, data: BookingTypeCreate, user: User = Depends(require_owner), db: Session = Depends(get_db)):
     _get_workspace_access(workspace_id, user, db)
     # Avoid creating duplicate booking types with the same name
     # and duration for this workspace.
@@ -45,7 +45,7 @@ def create_booking_type(workspace_id: int, data: BookingTypeCreate, user: User =
     return {"id": bt.id, "name": bt.name}
 
 @router.patch("/{workspace_id}/booking-types/{type_id}")
-def update_booking_type(workspace_id: int, type_id: int, data: dict, user: User = Depends(get_current_user), db: Session = Depends(get_db)):
+def update_booking_type(workspace_id: int, type_id: int, data: dict, user: User = Depends(require_owner), db: Session = Depends(get_db)):
     _get_workspace_access(workspace_id, user, db)
     bt = db.query(BookingType).filter(BookingType.id == type_id, BookingType.workspace_id == workspace_id).first()
     if not bt:

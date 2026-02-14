@@ -5,7 +5,7 @@ from app.models.user import User
 from app.models.form import Form, FormSubmission
 from app.models.booking import Booking
 from app.schemas import FormCreate
-from app.api.workspaces import _get_workspace_access
+from app.api.workspaces import _get_workspace_access, require_owner
 from app.auth import get_current_user
 
 router = APIRouter(prefix="/workspaces", tags=["forms"])
@@ -17,7 +17,7 @@ def list_forms(workspace_id: int, user: User = Depends(get_current_user), db: Se
     return [{"id": f.id, "name": f.name, "is_contact_form": f.is_contact_form, "fields": f.fields or []} for f in forms]
 
 @router.post("/{workspace_id}/forms")
-def create_form(workspace_id: int, data: FormCreate, user: User = Depends(get_current_user), db: Session = Depends(get_db)):
+def create_form(workspace_id: int, data: FormCreate, user: User = Depends(require_owner), db: Session = Depends(get_db)):
     _get_workspace_access(workspace_id, user, db)
     # If a form with the same name and type already exists for this
     # workspace, reuse it instead of creating duplicates.
